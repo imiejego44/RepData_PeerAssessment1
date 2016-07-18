@@ -1,0 +1,580 @@
+K=0#
+> for (i in 1:N){}#
+> for (i in 1:N){#
++ if (y[i] <= f(x[i]))#
++ {K=K+1;points(x[i],y[i],col=3)}#
++ }
+K=0#
+> #
+> for (i in 1:N){#
++ if (y[i] <= f(x[i]))#
++ {K=K+1;points(x[i],y[i],col=3)}#
++ }
+K=0#
+> for (i in 1:N){}#
+> for (i in 1:N){#
++ if (y[i] <= f(x[i]))#
++ {K=K+1;points(x[i],y[i],col=3)}#
++ }
+> x = runif(N,a,b)
+x = runif(N,a,b)
+K=0
+for (i in 1:N){#
++ if (y[i] <= f(x[i]))#
++ {K=K+1;points(x[i],y[i],col=3)}#
++ }
+for (i in 1:N){#
+ if (y[i] <= f(x[i]))#
+ {K=K+1;points(x[i],y[i],col=3)}#
+ }
+K
+(int = c*(b-a)*(K/N))
+20*13+12+18
+20*13*2+30
+20*13+18+13
+20*13*2+18+13
+20*13*2+16+18
+13*2*20+18
+Ans + 11
+538+11
+-15.6/240
+-1/17
+4.4+0.065*540
+20+0.059*300
+-0.065*7840+39.5
+-0.065*1969+39.5
+t0-> log10(130)
+t0 -> log10(130)
+t0 <- log10(130)
+t0
+t1 -< log10(300)
+t1 <- log10(300)
+t2 <- log(540)
+t2 <- log10(540)
+f0 = log10(30)
+f1=log10(20)
+f2 = log10(4.4)
+A1 = (f2-f1)/(t2-t1)
+A1
+A1 = (f0-f1)/(t0-t1)
+A1
+A2 = (f2-f1)/(t2-t1)
+B1 = f1 - A1 * t1
+B1
+B2 = f1 - A2 * t1
+B2
+t3b=log10(1969)
+t3a=log10(7840)
+A2 t3a + B2
+A2*t3a + B2
+A2*t3b + B2
+A1 * t1 + B1
+f1
+10^(-2.35)
+10^(-0.8)
+118*2+7.89+156.28
+Ans-118*2
+ANS
+-118*2
+7.89+156.28
+164.17+32.5-86.34
+110.33/3
++25
+110.33/3+25
+36.78+50+120
+313+264.76
+(313+264.76)/6
+96*3
+install.packages(c("slidify","ggplot2","devtools"))
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("GenomicFeatures","AnnotationObi"))
+install.packages("KernSmooth")
+install.package("KernSmooth")
+install.packages("kernsmooth")
+install.package("KernSmooth")
+install.packages("KernSmooth")
+load(KernSmooth)
+library(KernSmooth)
+84.48*0.75*5*4.5
+wektor = c(1:10)
+cat(wektor, file="w.csv",append=F,sep=",")
+wektor
+macierz= matrix(1:6,2,3)
+write.table(macierz,file="m.csv",sep=",")
+macierz
+v1=1:5
+v2=c(T,T,F,F,T)
+df=data.frame(v1,v2)
+write.csv(df,file="df.csf")
+read.table("df.csf")
+install.packages("swirl")
+library(swirl)
+install.packages("swirl")
+library(swirl)
+install_from_swirl("R programming")
+install_from_swirl("R Programming")
+swirl()
+exit
+quit
+makeCacheMatrix <- function(x = matrix()) {#
+    m <- NULL#
+    set <- function(y) {#
+        x <<- y#
+        m <<- NULL#
+    }#
+    get <- function() x#
+    setinv <- function(inverse) m <<- inverse#
+    getinv <- function() m#
+    list(set = set, get = get,#
+    setinv = setinv,#
+    getinv = getinv)#
+}#
+## This function computes the inverse of the special "matrix" returned by makeCacheMatrix above.#
+## If the inverse has already been calculated (and the matrix has not changed),#
+## then cacheSolve retrieve the inverse from the cache.#
+#
+cacheSolve <- function(x, ...) {#
+    m <- x$getinv()#
+    if(!is.null(m)) {#
+        message("getting cached data")#
+        return(m)#
+    }#
+    data <- x$get()#
+    m <- solve(data)#
+    x$setinv(m)#
+    m#
+    ## Return a matrix that is the inverse of 'x'#
+}
+o = replicate(10,runif(10))
+a1 = cacheSolve(makeCacheMatrix(o))
+a2 = solve(o)
+a1-a2
++makeCacheMatrix <- function(x = matrix()) {#
+ +  m <- NULL#
+ +  set <- function(y){#
+ +    x <<- y#
+ +    m <<- NULL#
+ +  }#
+ +  get <- function() x#
+ +  setMatInverse <- function(solve) m <<- solve#
+ +  getMatInverse <- function() m#
+ +  list(set=set, get=get, setInv=setInv,getInv=getInv)#
+ +  #
+ +}#
+ +#
+ +#
+ +## If the inverse of matrix is available, it is assigned, otherwise computed#
+ +## and committed#
+ +#
+ +cacheSolve <- function(x, ...) {#
+ +  ## Return a matrix that is the inverse of 'x'#
+ +  m <- x$getMatInverse()#
+ +  #
+ +  if(!is.null(m)) {#
+ +    message("getting cached data")#
+ +    return(m)#
+ +  }#
+ +  data <- x$get()#
+ +  m <- solve(data, ...)#
+ +  x$setInv(m)#
+ +  m#
+ +}
+makeCacheMatrix <- function(x = matrix()) {#
+ +  m <- NULL#
+ +  set <- function(y){#
+ +    x <<- y#
+ +    m <<- NULL#
+ +  }#
+ +  get <- function() x#
+ +  setMatInverse <- function(solve) m <<- solve#
+ +  getMatInverse <- function() m#
+ +  list(set=set, get=get, setInv=setInv,getInv=getInv)#
+ +  #
+ +}
+makeCacheMatrix <- function(x = matrix()) {
+m <- NULL
+set <- function(y){
+x <<- y
+m <<- NULL
+}
+get <- function() x
+setMatInverse <- function(solve) m <<- solve
+getMatInverse <- function() m
+list(set=set, get=get, setInv=setInv,getInv=getInv)
+}
+makeCacheMatrix <- function(x = matrix()) {#
+  m <- NULL#
+  set <- function(y){#
+    x <<- y#
+    m <<- NULL#
+  }#
+  get <- function() x#
+  setMatInverse <- function(solve) m <<- solve#
+  getMatInverse <- function() m#
+  list(set=set, get=get, setInv=setInv,getInv=getInv)#
+}#
+## If the inverse of matrix is available, it is assigned, otherwise computed#
+## and committed#
+#
+cacheSolve <- function(x, ...) {#
+  ## Return a matrix that is the inverse of 'x'#
+  m <- x$getMatInverse()#
+  if(!is.null(m)) {#
+    message("getting cached data")#
+    return(m)#
+  }#
+  data <- x$get()#
+  m <- solve(data, ...)#
+  x$setInv(m)#
+  m#
+}
+o = replicate(10,runif(10))
+a1 = cacheSolve(makeCacheMatrix(o))
+makeCacheMatrix <- function(x = matrix()) #
+{#
+  inv<-NULL#
+set<-function(y=matrix())  ## set value of matrix using set function#
+  {#
+  x<<-y#
+  inv<<-NULL#
+  }#
+  get<-function() x    ## get data of matrix to be inverted#
+  getinverse<-function() ## get cached inverse matrix  #
+  {#
+    inv#
+  }#
+  setinverse<-function(inverse) ## Set inverse matrix value in first iteration to cache.#
+    {#
+    inv<<-inverse#
+    }#
+#
+  list(set=set,get=get,getinverse=getinverse,setinverse=setinverse)#
+}#
+#
+##########################################################################################
+##  cacheSolve ###
+##generates inv of matrix in first iteration.#
+##retrieve cached matrix value using function call#
+cacheSolve <- function(x, ...) {#
+  inv<-x$getinverse()#
+  if(!is.null(inv)){#
+    message("getting cached data")#
+    return(inv)#
+  }#
+  mat <- x$get()#
+  inv <- solve(mat)#
+  x$setinverse(inv)#
+  inv#
+  }
+a1 = cacheSolve(makeCacheMatrix(o))
+a2 = solve(o)
+a1-a2
+CacheMatrix <- function(x = numeric()) #
+  {#
+  # holds the cached value or NULL if nothing is cached#
+  # initially nothing is cached so set it to NULL#
+  cache <- NULL#
+  # store a matrix#
+  setMatrix <- function(newValue) #
+  {#
+    x <<- newValue#
+    # since the matrix is assigned a new value, flush the cache#
+    cache <<- NULL#
+  }#
+  # returns the stored matrix#
+  getMatrix <- function() #
+  {#
+    x#
+  }#
+  # cache the given argument #
+  cacheInverse <- function(solve) #
+  {#
+    cache <<- solve#
+  }#
+  # get the cached value#
+  getInverse <- function() #
+  {#
+    cache#
+  }#
+  # return a list. Each named element of the list is a function#
+  list(setMatrix = setMatrix, getMatrix = getMatrix, cacheInverse = cacheInverse, getInverse = getInverse)#
+}#
+# The following function calculates the inverse of a "special" matrix created with CacheMatrix#
+#
+ solve <- function(y, ...) #
+{#
+  # get the cached value#
+  inverse <- y$getInverse()#
+  # if a cached value exists return it#
+  if(!is.null(inverse)) #
+  {#
+    message("getting cached data")#
+    return(inverse)#
+  }#
+  # otherwise get the matrix, caclulate the inverse and store it in the cache#
+  data <- y$getMatrix()#
+  inverse <- solve(data)#
+  y$cacheInverse(inverse)#
+  # return the inverse#
+  inverse#
+}
+a1 = cacheSolve(makeCacheMatrix(o))
+a2 = solve(o)
+o = replicate(10,runif(10))
+a1 = cacheSolve(makeCacheMatrix(o))
+a2 = solve(o)
+o = replicate(10,runif(10))
+a2 = solve(o)
+CacheMatrix <- function(x = numeric()) #
+  {#
+  # holds the cached value or NULL if nothing is cached#
+  # initially nothing is cached so set it to NULL#
+  cache <- NULL#
+  # store a matrix#
+  setMatrix <- function(newValue) #
+  {#
+    x <<- newValue#
+    # since the matrix is assigned a new value, flush the cache#
+    cache <<- NULL#
+  }#
+  # returns the stored matrix#
+  getMatrix <- function() #
+  {#
+    x#
+  }#
+  # cache the given argument #
+  cacheInverse <- function(solve) #
+  {#
+    cache <<- solve#
+  }#
+  # get the cached value#
+  getInverse <- function() #
+  {#
+    cache#
+  }#
+  # return a list. Each named element of the list is a function#
+  list(setMatrix = setMatrix, getMatrix = getMatrix, cacheInverse = cacheInverse, getInverse = getInverse)#
+}#
+# The following function calculates the inverse of a "special" matrix created with CacheMatrix#
+#
+ solve <- function(x, ...) #
+{#
+  # get the cached value#
+  inverse <- x$getInverse()#
+  # if a cached value exists return it#
+  if(!is.null(inverse)) #
+  {#
+    message("getting cached data")#
+    return(inverse)#
+  }#
+  # otherwise get the matrix, caclulate the inverse and store it in the cache#
+  data <- x$getMatrix()#
+  inverse <- solve(data)#
+  x$cacheInverse(inverse)#
+  # return the inverse#
+  inverse#
+}
+a2 = solve(o)
+a1 = cacheSolve(makeCacheMatrix(o))
+o = replicate(10, runif(10))
+CacheMatrix <- function(x = numeric()) #
+  {#
+  # holds the cached value or NULL if nothing is cached#
+  # initially nothing is cached so set it to NULL#
+  cache <- NULL#
+  # store a matrix#
+  setMatrix <- function(newValue) #
+  {#
+    x <<- newValue#
+    # since the matrix is assigned a new value, flush the cache#
+    cache <<- NULL#
+  }#
+  # returns the stored matrix#
+  getMatrix <- function() #
+  {#
+    x#
+  }#
+  # cache the given argument #
+  cacheInverse <- function(solve) #
+  {#
+    cache <<- solve#
+  }#
+  # get the cached value#
+  getInverse <- function() #
+  {#
+    cache#
+  }#
+  # return a list. Each named element of the list is a function#
+  list(setMatrix = setMatrix, getMatrix = getMatrix, cacheInverse = cacheInverse, getInverse = getInverse)#
+}#
+# The following function calculates the inverse of a "special" matrix created with CacheMatrix#
+#
+ solve <- function(x, ...) #
+{#
+  # get the cached value#
+  inverse <- x$getInverse()#
+  # if a cached value exists return it#
+  if(!is.null(inverse)) #
+  {#
+    message("getting cached data")#
+    return(inverse)#
+  }#
+  # otherwise get the matrix, caclulate the inverse and store it in the cache#
+  data <- x$getMatrix()#
+  inverse <- solve(data)#
+  x$cacheInverse(inverse)#
+  # return the inverse#
+  inverse#
+}
+a1 = cacheSolve(makeCacheMatrix(o))
+library(datasets)
+data(iris)
+?iris
+iris
+mean(iris@Sepal.Length)
+mean(iris$Sepal.Length)
+colMeans(iris)
+apply(iris,1,mean)
+apply(iris[,1:4],1,mean)
+apply(iris[,1:4],2,mean)
+library(datasets)
+data(mtcars)
+mtcars
+mean(mtcars$mpg, mtcars$cyl)
+sapply(split(mtcars$mpg, mtcars$cyl), mean)
+tapply(mtcars$mpg, mtcars$cyl, mean)
+tapply(mtcars$cyl, mtcars$mpg, mean)
+with(mtcars, tapply(mpg, cyl, mean))
+debug(ls)
+ls
+mtcars
+lapply(mtcars, mean)
+sapply(mtcars, cyl, mean)
+sapply(split(mtcars$mpg, mtcars$cyl), mean)
+tapply(mtcars$mpg, mtcars$cyl, mean)
+tapply(mtcars$cyl, mtcars$mpg, mean)
+mean(mtcars$mpg, mtcars$cyl)
+tapply(mtcars$hp, mtcars$cyl, mean)
+ww <- tapply(mtcars$hp, mtcars$cyl, mean)
+ww
+ww[2,1]-ww[2,3]
+ww$4-ww$8
+209.21-82.63
+with(mtcars, tapply(mpg, cyl, mean))
+ls
+debug(ls)
+apply(iris[101:150],2,mean)
+apply(iris[101:150,],2,mean)
+apply(iris[,101:150],2,mean)
+apply(iris[, 1:4], 2, mean)
+apply(iris, 1, mean)
+iris
+iris[101:150]
+iris[101:150,]
+apply(iris[101:150,],2,mean)
+isis<-iris[101:150,]
+apply(isis[,1:4], 2, mean)
+apply(iris[1:4,],1,mean)
+apply(iris[1:4,],2,mean)
+apply(iris[,1:4],1,mean)
+?apply
+split(mtcars$mpg, mtcars$cyl)
+?tapply
+apply(mtcars$hp, mtcars$cyl, mean)
+tapply(mtcars$hp, mtcars$cyl, mean)
+ww <- tapply(mtcars$hp, mtcars$cyl, mean)
+ww
+ww[1]
+ww$4
+ww$a
+ww[1]-ww[3]
+ww$'4'
+ww$`4`
+ww - c(1,2,3)
+c(1,2,3) -  ww
+ww$"1"
+iris$Species
+virginica
+:q
+q
+``
+exit
+=
+library(datasetss)
+library(datasets)
+data(iris)
+iris
+iris$Species='virginica'
+iris
+data(iris)
+iris
+Levels(iris$Species)
+exit
+f <- gl(40,10)
+f
+str(f)
+summary(f)
+set.seed(1)#
+rpois(5, 2)
+exit
+install.packages("RMySQL")
+library(httr)#
+#
+# 1. Find OAuth settings for github:#
+#    http://developer.github.com/v3/oauth/#
+oauth_endpoints("github")#
+#
+# 2. To make your own application, register at at#
+#    https://github.com/settings/applications. Use any URL for the homepage URL#
+#    (http://github.com is fine) and  http://localhost:1410 as the callback url#
+##
+#    Replace your key and secret below.#
+myapp <- oauth_app("github",#
+  key = "56b637a5baffac62cad9",#
+  secret = "8e107541ae1791259e9987d544ca568633da2ebf")#
+#
+# 3. Get OAuth credentials#
+github_token <- oauth2.0_token(oauth_endpoints("github"), myapp)#
+#
+# 4. Use API#
+gtoken <- config(token = github_token)#
+req <- GET("https://api.github.com/rate_limit", gtoken)#
+stop_for_status(req)#
+content(req)#
+#
+# OR:#
+req <- with_config(gtoken, GET("https://api.github.com/rate_limit"))#
+stop_for_status(req)#
+content(req)
+oauth_endpoints("github")#
+#
+# 2. To make your own application, register at at#
+#    https://github.com/settings/applications. Use any URL for the homepage URL#
+#    (http://github.com is fine) and  http://localhost:1410 as the callback url#
+##
+#    Replace your key and secret below.#
+myapp <- oauth_app("github",#
+                   key = "f7510f40695e66437dd1",#
+                   secret = "007bd2ec397d230a54d8afb3c8c3455fb11994b3")
+github_token <- oauth2.0_token(oauth_endpoints("github"), myapp)
+22.7-23.9
+38.75_2*13.75
+38.75+2*13.75
+206.6*6.1/100
+152.65/537.35
+1/Ans
+1/(152.65/537.35)
+c <- 1/(152.65/537.35)
+c * 174.44
+install.packages("knitr")
+library(knitr)
+setwd("/Users/ac/Desktop/UZER/kursera/datasajensspec/repres/RepData_PeerAssessment1/")
+library(knitr)
+library(markdown)
+library(rmarkdown)
+kintr("PA1_template.Rmd")
+knit("PA1_template.Rmd")
+knit("PA1_template.Rmd")
+knit("PA1_template.Rmd")
+knit("PA1_template.Rmd")
+knit("PA1_template.Rmd")

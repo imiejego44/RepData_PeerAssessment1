@@ -9,8 +9,8 @@ output:
 ## Loading and preprocessing the data
 
 ```{r setwd, echo=FALSE}
-## Set working directory
-setwd("/Users/ac/Desktop/UZER/kursera/datasajensspec/repres/RepData_PeerAssessment1/")
+#library(dplyr)
+#setwd("/Users/ac/Desktop/UZER/kursera/datasajensspec/repres/RepData_PeerAssessment1/")
 ```
 
 ```{r read, echo=TRUE}
@@ -25,14 +25,14 @@ activity[, 3]  <- as.numeric(activity[, 3])
 
 ## What is mean total number of steps taken per day?
 
-```{r setwd, echo=TRUE}
+```{r steps-ave, echo=TRUE}
 sum_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=sum, na.rm=TRUE)
 colnames(sum_act) <- c("Date","Total number of steps")
 
 barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
-The mean number of steps and the median are:
+The mean number of steps and the median for every day are:
 ```{r mean-steps, echo=TRUE}
 mean_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=mean, na.rm=TRUE)
 colnames(mean_act) <- c("Date","Mean")
@@ -43,6 +43,15 @@ colnames(median_act) <- c("Date","Median")
 median_act
 ```
 
+And in total:
+
+```{r mean-tot, echo=TRUE}
+mean_tot <- mean(sum_act[2])
+mean_tot
+
+median_tot <= median(sum_act[2])
+median_tot
+```
 
 ## What is the average daily activity pattern?
 
@@ -106,7 +115,7 @@ for (i in 1:length(activity[,1]))
 ```
 
 Let us make the new histogram
-```{r setwd, echo=TRUE}
+```{r new-hist, echo=TRUE}
 sum_new <- aggregate.data.frame(newset3[1], by = list(newset3[,2]), FUN=sum, na.rm=TRUE)
 colnames(sum_new) <- c("Date","Total number of steps")
 
@@ -122,8 +131,8 @@ barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps 
 barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps without NA", xlab = "Following day")
 ```
 
-The mean number of steps and the median are:
-```{r mean-steps, echo=TRUE}
+The new mean number of steps and the median are:
+```{r mean-steps-new, echo=TRUE}
 mean_new <- aggregate.data.frame(newset3[1], by = list(newset3[,2]), FUN=mean, na.rm=TRUE)
 colnames(mean_new) <- c("Date","Mean")
 mean_new
@@ -131,6 +140,16 @@ mean_new
 median_new <- aggregate.data.frame(newset3[1], by = list(newset3[,2]), FUN=median, na.rm=TRUE)
 colnames(median_new) <- c("Date","Median")
 median_new
+```
+
+And in total:
+
+```{r mean-tot-new, echo=TRUE}
+mean_tot_new <- mean(sum_new[2])
+mean_tot_new
+
+median_tot <- median(sum_new[2])
+median_tot_new
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
