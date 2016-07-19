@@ -29,21 +29,13 @@ activity[, 3]  <- as.numeric(activity[, 3])
 sum_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=sum)
 colnames(sum_act) <- c("Date","Total number of steps")
 
-barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
+x1<-matrix(sum_act$`Total number of steps`,ncol=length(sum_act$`Total number of steps`),nrow=1)
+colnames(x1) <- as.character(sum_act$Date)
+barplot(x1, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
-The mean number of steps and the median for every day are:
-```{r mean-steps, echo=TRUE}
-mean_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=mean, na.rm=TRUE)
-colnames(mean_act) <- c("Date","Mean")
-mean_act
 
-median_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=median, na.rm=TRUE)
-colnames(median_act) <- c("Date","Median")
-median_act
-```
-
-And in total:
+The mean number of steps and the median for total number of steps taken per day:
 
 ```{r mean-tot, echo=TRUE}
 mean_tot <- mean(sum_act[,2], na.rm = TRUE)
@@ -53,31 +45,32 @@ median_tot <- median(sum_act[,2], na.rm = TRUE)
 median_tot
 ```
 
+
 ## What is the average daily activity pattern?
 
-
-A time series plot of the 5-minute interval and the average number of steps:
+A total time series plot of the 5-minute interval and number of steps per day:
 ```{r time-series, echo=TRUE}
 #plot(activity$steps, type="l", xlab="Time", ylab= "Steps", col="green" , lwd=1)
 
-plot(mean_act$Mean, type="l", xlab="Time", ylab= "Steps", col="green" , lwd=1)
-
 ```
 
 
+The daily time series, with averaged number of steps, to show the activity pattern:
 
-When is the maximum?
-```{r maximum-steps, echo=TRUE}
+```{r pattern, echo=TRUE}
 
-maxsteps <- max(activity$steps, na.rm = TRUE)
-maxsteps
+meansteps <- aggregate(activity$steps, list(as.numeric(activity$interval)), FUN="mean", na.rm = TRUE)
+names(meansteps) <- c("interval","mean")
 
-activity$interval[which(activity$steps == maxsteps)]
+plot(meansteps, type="l", xlab="Interval", ylab="Average Number of Steps", main="Daily Steps Taken on Average, by Interval", col="green" , lwd=1)
 ```
 
-The whole record:
-```{r maximum-steps-record, echo=TRUE}
-activity[which(activity$steps == maxsteps),]
+And which averaged interval is the maximum?
+```{r maximum-ave, echo=TRUE}
+intmean<- aggregate(activity$steps, list(as.numeric(activity$interval)), data=activity, FUN =mean, na.rm=TRUE)
+names(intmean) <- c("interval", "interval.mean")
+intmean[which.max(intmean$interval.mean),]
+
 ```
 
 ## Imputing missing values
@@ -94,7 +87,7 @@ percentage <- nas/length(activity[,1])*100
 percentage
 ```
 
-We have planty of NAs, so we do something with them. If there is a mean of steps for the day we have a missing value, we use that mean. If there is not, which means the whole day is full of NAs, we put 0 as the number of steps.
+We have planty of NAs, so we do something with them. We assign the mean for the interval computed before.
 
 ```{r NA-fill, echo=TRUE}
 
@@ -106,9 +99,8 @@ for (i in 1:length(activity[,1]))
 {
   if (is.na(newset3[i,1] == TRUE) )
   {
-        meanstep <- mean_act$steps[which(as.Date(mean_act$Date) == as.Date(newset3[i,2]))]
-        if (is.null(meanstep) == FALSE) {newset3[i,1] = meanstep}
-        else newset3[i,1] = 0
+        meanstep <- meansteps$mean[which(as.numeric(meansteps$interval) == as.numeric(newset3[i,3]))]
+        newset3[i,1] = meanstep
   }
   else newset3[i,1] = activity[i,1]
 }
@@ -119,7 +111,9 @@ Let us make the new histogram
 sum_new <- aggregate.data.frame(newset3[1], by = list(newset3[,2]), FUN=sum, na.rm=TRUE)
 colnames(sum_new) <- c("Date","Total number of steps")
 
-barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
+x2<-matrix(sum_new$`Total number of steps`,ncol=length(sum_new$`Total number of steps`),nrow=1)
+colnames(x2) <- as.character(sum_act$Date)
+barplot(x2, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
 Which is, in compirison with the old one:
@@ -127,22 +121,11 @@ Which is, in compirison with the old one:
 ```{r plots, echo=TRUE}
 
 par(mfcol=c(2,1))
-barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures with NA")
-barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures without NA")
+barplot(x1, space=0, axisnames = TRUE, ylab="Total number of steps", xlab = "Following day",main="Measures with NA")
+barplot(x2, space=0, axisnames = TRUE, ylab="Total number of steps", xlab = "Following day",main="Measures without NA")
 ```
 
 The new mean number of steps and the median are:
-```{r mean-steps-new, echo=TRUE}
-mean_new <- aggregate.data.frame(newset3[1], by = list(newset3[,2]), FUN=mean, na.rm=TRUE)
-colnames(mean_new) <- c("Date","Mean")
-mean_new
-
-median_new <- aggregate.data.frame(newset3[1], by = list(newset3[,2]), FUN=median, na.rm=TRUE)
-colnames(median_new) <- c("Date","Median")
-median_new
-```
-
-And in total:
 
 ```{r mean-tot-new, echo=TRUE}
 mean_tot_new <- mean(sum_new[,2])
@@ -151,6 +134,15 @@ mean_tot_new
 median_tot_new <- median(sum_new[,2])
 median_tot_new
 ```
+
+Which gives the differences:
+```{r nandiff, echo=TRUE}
+mean_tot_new - mean_tot
+
+median_tot_new - median_tot
+```
+
+We can see, that implementing that method does not change the mean, but makes the median to be equal to the mean. It seems to not change the days with most of total number of steps, but it changes most of the measures on histogram which used to have NA counts. 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -167,30 +159,34 @@ week_days <- cbind(newset3$steps,  days3, newset3$interval,newset3$date)
 colnames(week_days) <- c("steps","week or end","intervals","date")
 week_days2 <- data.frame(week_days)
 
-
-adays1 <- weekdays(mean_new$Date, abbreviate = TRUE);
-adays2 <- gsub("Sun|Sat", "weekend",adays1)
-adays3 <- gsub("Mon|Tue|Wed|Thu|Fri", "weekday",adays2)
-
-aweek_days <- cbind(mean_new$Mean,  adays3)
-colnames(aweek_days) <- c("steps","week or end")
-aweek_days2 <- data.frame(aweek_days)
-
 ```
 
 
-making an averaged plot:
-```{r averaged-weekdays-plots, echo=TRUE}
+making averaged plots:
+```{r ave-week-proc, echo=TRUE}
 
-anormaldays <- aweek_days2[which(aweek_days2$week.or.end=="weekday"),]
-aweekends <- aweek_days2[which(aweek_days2$week.or.end=="weekend"),]
+anormaldays <- week_days2[which(week_days2$week.or.end=="weekday"),]
+aweekends <- week_days2[which(week_days2$week.or.end=="weekend"),]
 
-lpw <- c(1:length(aweekends[,1]))
-lpd <- c(1:length(anormaldays[,1]))
+aveweekend <- aggregate(as.numeric(aweekends$steps), list(as.numeric(aweekends$intervals)), FUN="mean", na.rm = TRUE)
+names(aveweekend) <- c("interval","mean")
+
+aveday <- aggregate(as.numeric(anormaldays$steps), list(as.numeric(anormaldays$intervals)), FUN="mean", na.rm = TRUE)
+names(aveday) <- c("interval","mean")
+
+#fixing interval gaps
+aveday[,1] <- meansteps[,1]
+aveweekend[,1] <- meansteps[,1]
+```
+
+
+```{r plot-weekdays, echo=TRUE}
 
 par(mfrow=c(2,1)) 
-plot( t(lpw), t(aweekends[1]), type="l", xlab="Time", ylab= "Steps", col="green" , lwd=1,main="weekends")
-plot( t(lpd), t(anormaldays[1]), type="l", xlab="Time", ylab= "Steps", col="red" , lwd=1,main="weekdays")
+
+plot(aveday, type="l", xlab="Interval", ylab="Average Number of Steps", main="Daily steps Taken on Average, weekends", col="green" , lwd=1)
+
+plot(aveweekend, type="l", xlab="Interval", ylab="Average Number of Steps", main="Daily steps Taken on Average, weekdays", col="green" , lwd=1)
 ```
 
 Be careful with the data interpretation: if the mean of steps is 0 there is a high probability that there are missing data there.
