@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ## Loading and preprocessing the data
@@ -30,12 +35,16 @@ activity[, 3]  <- as.numeric(activity[, 3])
 sum_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=sum)
 colnames(sum_act) <- c("Date","Total number of steps")
 
-x1<-matrix(sum_act$`Total number of steps`,ncol=length(sum_act$`Total number of steps`),nrow=1)
-colnames(x1) <- as.character(sum_act$Date)
-barplot(x1, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
+hist(sum_act$`Total number of steps`, breaks=11, xlab="Total number of steps", ylab="counts", main="Histogram of total number of steps taken each day")
 ```
 
-![](PA1_template_files/figure-html/steps-ave-1.png)<!-- -->
+![plot of chunk steps-ave](figure/steps-ave-1.png)
+
+```r
+#x1<-matrix(sum_act$`Total number of steps`,ncol=length(sum_act$`Total number of steps`),nrow=1)
+#colnames(x1) <- as.character(sum_act$Date)
+#barplot(x1, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
+```
 
 
 The mean number of steps and the median for total number of steps taken per day:
@@ -79,7 +88,7 @@ names(meansteps) <- c("interval","mean")
 plot(meansteps, type="l", xlab="Interval", ylab="Average Number of Steps", main="Daily Steps Taken on Average, by Interval", col="green" , lwd=1)
 ```
 
-![](PA1_template_files/figure-html/pattern-1.png)<!-- -->
+![plot of chunk pattern](figure/pattern-1.png)
 
 And which averaged interval is the maximum?
 
@@ -143,23 +152,27 @@ Let us make the new histogram
 sum_new <- aggregate.data.frame(newset3[1], by = list(newset3[,2]), FUN=sum, na.rm=TRUE)
 colnames(sum_new) <- c("Date","Total number of steps")
 
-x2<-matrix(sum_new$`Total number of steps`,ncol=length(sum_new$`Total number of steps`),nrow=1)
-colnames(x2) <- as.character(sum_act$Date)
-barplot(x2, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
+hist(sum_new$`Total number of steps`, breaks=11, xlab="Total number of steps", ylab="counts", main="Histogram of total number of steps taken each day")
 ```
 
-![](PA1_template_files/figure-html/new-hist-1.png)<!-- -->
+![plot of chunk new-hist](figure/new-hist-1.png)
+
+```r
+#x2<-matrix(sum_new$`Total number of steps`,ncol=length(sum_new$`Total number of steps`),nrow=1)
+#colnames(x2) <- as.character(sum_act$Date)
+#barplot(x2, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
+```
 
 Which is, in compirison with the old one:
 
 
 ```r
 par(mfcol=c(2,1))
-barplot(x1, space=0, axisnames = TRUE, ylab="Total number of steps", xlab = "Following day",main="Measures with NA")
-barplot(x2, space=0, axisnames = TRUE, ylab="Total number of steps", xlab = "Following day",main="Measures without NA")
+hist(sum_act$`Total number of steps`, breaks=9, xlab="Total number of steps", ylab="counts", main="Histogram of total number of steps taken each day with NA")
+hist(sum_new$`Total number of steps`, breaks=9, xlab="Total number of steps", ylab="counts", main="Histogram of total number of steps taken each day without NA")
 ```
 
-![](PA1_template_files/figure-html/plots-1.png)<!-- -->
+![plot of chunk plots](figure/plots-1.png)
 
 The new mean number of steps and the median are:
 
@@ -200,12 +213,11 @@ median_tot_new - median_tot
 ## [1] 1.188679
 ```
 
-We can see, that implementing that method does not change the mean, but makes the median to be equal to the mean. It seems to not change the days with most of total number of steps, but it changes most of the measures on histogram which used to have NA counts. 
+We can see, that implementing that method does not change the mean, but makes the median to be equal to the mean. It seems to make the histogram more "average". 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-
-Creating a new dataset:
+Since we have NAs substituted, I am presenting the results from a new dataset. Creating the new dataset:
 
 ```r
 ## Reframe:
@@ -247,5 +259,5 @@ plot(aveday, type="l", xlab="Interval", ylab="Average Number of Steps", main="Da
 plot(aveweekend, type="l", xlab="Interval", ylab="Average Number of Steps", main="Daily steps Taken on Average, weekdays", col="green" , lwd=1)
 ```
 
-![](PA1_template_files/figure-html/plot-weekdays-1.png)<!-- -->
+![plot of chunk plot-weekdays](figure/plot-weekdays-1.png)
 

@@ -1,3 +1,41 @@
+abline(h=0,col=2,lty=2)
+points(x,y)
+int2$value
+K=0#
+> for (i in 1:N){}#
+> for (i in 1:N){#
++ if (y[i] <= f(x[i]))#
++ {K=K+1;points(x[i],y[i],col=3)}#
++ }
+K=0#
+> #
+> for (i in 1:N){#
++ if (y[i] <= f(x[i]))#
++ {K=K+1;points(x[i],y[i],col=3)}#
++ }
+K=0#
+> for (i in 1:N){}#
+> for (i in 1:N){#
++ if (y[i] <= f(x[i]))#
++ {K=K+1;points(x[i],y[i],col=3)}#
++ }
+> x = runif(N,a,b)
+x = runif(N,a,b)
+K=0
+for (i in 1:N){#
++ if (y[i] <= f(x[i]))#
++ {K=K+1;points(x[i],y[i],col=3)}#
++ }
+for (i in 1:N){#
+ if (y[i] <= f(x[i]))#
+ {K=K+1;points(x[i],y[i],col=3)}#
+ }
+K
+(int = c*(b-a)*(K/N))
+20*13+12+18
+20*13*2+30
+20*13+18+13
+20*13*2+18+13
 20*13*2+16+18
 13*2*20+18
 Ans + 11
@@ -533,27 +571,10 @@ c <- 1/(152.65/537.35)
 c * 174.44
 install.packages("knitr")
 library(knitr)
-library(dplyr)
-install.packages("dplyr")
-install.packages("knitr")
 setwd("/Users/ac/Desktop/UZER/kursera/datasajensspec/repres/RepData_PeerAssessment1/")
-knit("PA1_template.md")
-library(knitr)
-knit("PA1_template.md")
-knit2html("PA1_template.md")
-knit2html("PA1_template.md", "PA1_template.html")
-knit("PA1_template.md","PA1_template.html")
-knit("PA1_template.md","PA1_template.html")
-knit("PA1_template.Rmd","PA1_template.html")
-knit("PA1_template.Rmd","PA1_template.html")
-knit("PA1_template.Rmd","PA1_template.html")
-knit("PA1_template.Rmd","PA1_template.md")
-knit2html("PA1_template.Rmd", "PA1_template.html")
-install.packages(rmarkdown)
-install.packages("rmarkdown")
-knit2html("PA1_template.Rmd", "PA1_template.html")
-knit("PA1_template.Rmd","PA1_template.md")
-knit("PA1_template.Rmd","PA1_template.md")
-knit("PA1_template.Rmd", "PA1_template.html")
-knit("PA1_template.Rmd", "PA1_template.html")
-knit("PA1_template.Rmd","PA1_template.md")
+library("knitr")
+knit("PA1_template.Rmd")
+knit("PA1_template.Rmd")
+knit("PA1_template.Rmd")
+knit("PA1_template.Rmd")
+knit("PA1_template.Rmd")
