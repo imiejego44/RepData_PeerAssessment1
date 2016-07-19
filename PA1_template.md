@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ## Loading and preprocessing the data
@@ -27,13 +32,13 @@ activity[, 3]  <- as.numeric(activity[, 3])
 
 
 ```r
-sum_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=sum, na.rm=TRUE)
+sum_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=sum)
 colnames(sum_act) <- c("Date","Total number of steps")
 
 barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
-![](PA1_template_files/figure-html/steps-ave-1.png)<!-- -->
+![plot of chunk steps-ave](figure/steps-ave-1.png)
 
 The mean number of steps and the median for every day are:
 
@@ -183,21 +188,21 @@ And in total:
 
 
 ```r
-mean_tot <- mean(sum_act[,2])
+mean_tot <- mean(sum_act[,2], na.rm = TRUE)
 mean_tot
 ```
 
 ```
-## [1] 9354.23
+## [1] 10766.19
 ```
 
 ```r
-median_tot <- median(sum_act[,2])
+median_tot <- median(sum_act[,2], na.rm = TRUE)
 median_tot
 ```
 
 ```
-## [1] 10395
+## [1] 10765
 ```
 
 ## What is the average daily activity pattern?
@@ -211,7 +216,7 @@ A time series plot of the 5-minute interval and the average number of steps:
 plot(mean_act$Mean, type="l", xlab="Time", ylab= "Steps", col="green" , lwd=1)
 ```
 
-![](PA1_template_files/figure-html/time-series-1.png)<!-- -->
+![plot of chunk time-series](figure/time-series-1.png)
 
 
 
@@ -298,7 +303,7 @@ colnames(sum_new) <- c("Date","Total number of steps")
 barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
-![](PA1_template_files/figure-html/new-hist-1.png)<!-- -->
+![plot of chunk new-hist](figure/new-hist-1.png)
 
 Which is, in compirison with the old one:
 
@@ -306,10 +311,10 @@ Which is, in compirison with the old one:
 ```r
 par(mfcol=c(2,1))
 barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures with NA")
-barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures withou NA")
+barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures without NA")
 ```
 
-![](PA1_template_files/figure-html/plots-1.png)<!-- -->
+![plot of chunk plots](figure/plots-1.png)
 
 The new mean number of steps and the median are:
 
@@ -517,7 +522,7 @@ plot( t(lpw), t(aweekends[1]), type="l", xlab="Time", ylab= "Steps", col="green"
 plot( t(lpd), t(anormaldays[1]), type="l", xlab="Time", ylab= "Steps", col="red" , lwd=1,main="weekdays")
 ```
 
-![](PA1_template_files/figure-html/averaged-weekdays-plots-1.png)<!-- -->
+![plot of chunk averaged-weekdays-plots](figure/averaged-weekdays-plots-1.png)
 
 Be careful with the data interpretation: if the mean of steps is 0 there is a high probability that there are missing data there.
 

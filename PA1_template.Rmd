@@ -26,7 +26,7 @@ activity[, 3]  <- as.numeric(activity[, 3])
 ## What is mean total number of steps taken per day?
 
 ```{r steps-ave, echo=TRUE}
-sum_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=sum, na.rm=TRUE)
+sum_act <- aggregate.data.frame(activity[1], by = list(activity[,2]), FUN=sum)
 colnames(sum_act) <- c("Date","Total number of steps")
 
 barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
@@ -46,10 +46,10 @@ median_act
 And in total:
 
 ```{r mean-tot, echo=TRUE}
-mean_tot <- mean(sum_act[,2])
+mean_tot <- mean(sum_act[,2], na.rm = TRUE)
 mean_tot
 
-median_tot <- median(sum_act[,2])
+median_tot <- median(sum_act[,2], na.rm = TRUE)
 median_tot
 ```
 
@@ -128,7 +128,7 @@ Which is, in compirison with the old one:
 
 par(mfcol=c(2,1))
 barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures with NA")
-barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures withou NA")
+barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures without NA")
 ```
 
 The new mean number of steps and the median are:
