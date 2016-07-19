@@ -46,10 +46,10 @@ median_act
 And in total:
 
 ```{r mean-tot, echo=TRUE}
-mean_tot <- mean(sum_act[2])
+mean_tot <- mean(sum_act[,2])
 mean_tot
 
-median_tot <= median(sum_act[2])
+median_tot <- median(sum_act[,2])
 median_tot
 ```
 
@@ -127,8 +127,8 @@ Which is, in compirison with the old one:
 ```{r plots, echo=TRUE}
 
 par(mfcol=c(2,1))
-barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps with NA", xlab = "Following day")
-barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps without NA", xlab = "Following day")
+barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures with NA")
+barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures withou NA")
 ```
 
 The new mean number of steps and the median are:
@@ -145,10 +145,10 @@ median_new
 And in total:
 
 ```{r mean-tot-new, echo=TRUE}
-mean_tot_new <- mean(sum_new[2])
+mean_tot_new <- mean(sum_new[,2])
 mean_tot_new
 
-median_tot <- median(sum_new[2])
+median_tot_new <- median(sum_new[,2])
 median_tot_new
 ```
 
