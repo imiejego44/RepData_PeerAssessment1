@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
@@ -38,7 +33,7 @@ colnames(sum_act) <- c("Date","Total number of steps")
 barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
-![plot of chunk steps-ave](figure/steps-ave-1.png)
+![](PA1_template_files/figure-html/steps-ave-1.png)<!-- -->
 
 The mean number of steps and the median for every day are:
 
@@ -216,7 +211,7 @@ A time series plot of the 5-minute interval and the average number of steps:
 plot(mean_act$Mean, type="l", xlab="Time", ylab= "Steps", col="green" , lwd=1)
 ```
 
-![plot of chunk time-series](figure/time-series-1.png)
+![](PA1_template_files/figure-html/time-series-1.png)<!-- -->
 
 
 
@@ -303,7 +298,7 @@ colnames(sum_new) <- c("Date","Total number of steps")
 barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
-![plot of chunk new-hist](figure/new-hist-1.png)
+![](PA1_template_files/figure-html/new-hist-1.png)<!-- -->
 
 Which is, in compirison with the old one:
 
@@ -314,7 +309,7 @@ barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps"
 barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures withou NA")
 ```
 
-![plot of chunk plots](figure/plots-1.png)
+![](PA1_template_files/figure-html/plots-1.png)<!-- -->
 
 The new mean number of steps and the median are:
 
@@ -522,7 +517,7 @@ plot( t(lpw), t(aweekends[1]), type="l", xlab="Time", ylab= "Steps", col="green"
 plot( t(lpd), t(anormaldays[1]), type="l", xlab="Time", ylab= "Steps", col="red" , lwd=1,main="weekdays")
 ```
 
-![plot of chunk averaged-weekdays-plots](figure/averaged-weekdays-plots-1.png)
+![](PA1_template_files/figure-html/averaged-weekdays-plots-1.png)<!-- -->
 
 Be careful with the data interpretation: if the mean of steps is 0 there is a high probability that there are missing data there.
 
