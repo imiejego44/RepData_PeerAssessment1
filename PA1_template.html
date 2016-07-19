@@ -188,36 +188,21 @@ And in total:
 
 
 ```r
-mean_tot <- mean(sum_act[2])
-```
-
-```
-## Warning in mean.default(sum_act[2]): argument is not numeric or logical:
-## returning NA
-```
-
-```r
+mean_tot <- mean(sum_act[,2])
 mean_tot
 ```
 
 ```
-## [1] NA
+## [1] 9354.23
 ```
 
 ```r
-median_tot <= median(sum_act[2])
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'median_tot' not found
-```
-
-```r
+median_tot <- median(sum_act[,2])
 median_tot
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'median_tot' not found
+## [1] 10395
 ```
 
 ## What is the average daily activity pattern?
@@ -325,8 +310,8 @@ Which is, in compirison with the old one:
 
 ```r
 par(mfcol=c(2,1))
-barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps with NA", xlab = "Following day")
-barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps without NA", xlab = "Following day")
+barplot(sum_act$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures with NA")
+barplot(sum_new$`Total number of steps`, space=0, axisnames = TRUE, ylab="Steps", xlab = "Following day",main="Measures withou NA")
 ```
 
 ![plot of chunk plots](figure/plots-1.png)
@@ -479,36 +464,21 @@ And in total:
 
 
 ```r
-mean_tot_new <- mean(sum_new[2])
-```
-
-```
-## Warning in mean.default(sum_new[2]): argument is not numeric or logical:
-## returning NA
-```
-
-```r
+mean_tot_new <- mean(sum_new[,2])
 mean_tot_new
 ```
 
 ```
-## [1] NA
+## [1] 9354.23
 ```
 
 ```r
-median_tot <- median(sum_new[2])
-```
-
-```
-## Error in median.default(sum_new[2]): need numeric data
-```
-
-```r
+median_tot_new <- median(sum_new[,2])
 median_tot_new
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'median_tot_new' not found
+## [1] 10395
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
