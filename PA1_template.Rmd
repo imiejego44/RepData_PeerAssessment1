@@ -189,5 +189,3 @@ plot(aveday, type="l", xlab="Interval", ylab="Average Number of Steps", main="Da
 plot(aveweekend, type="l", xlab="Interval", ylab="Average Number of Steps", main="Daily steps Taken on Average, weekdays", col="green" , lwd=1)
 ```
 
-Be careful with the data interpretation: if the mean of steps is 0 there is a high probability that there are missing data there.
-

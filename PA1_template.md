@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
@@ -40,7 +35,7 @@ colnames(x1) <- as.character(sum_act$Date)
 barplot(x1, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
-![plot of chunk steps-ave](figure/steps-ave-1.png)
+![](PA1_template_files/figure-html/steps-ave-1.png)<!-- -->
 
 
 The mean number of steps and the median for total number of steps taken per day:
@@ -84,7 +79,7 @@ names(meansteps) <- c("interval","mean")
 plot(meansteps, type="l", xlab="Interval", ylab="Average Number of Steps", main="Daily Steps Taken on Average, by Interval", col="green" , lwd=1)
 ```
 
-![plot of chunk pattern](figure/pattern-1.png)
+![](PA1_template_files/figure-html/pattern-1.png)<!-- -->
 
 And which averaged interval is the maximum?
 
@@ -153,7 +148,7 @@ colnames(x2) <- as.character(sum_act$Date)
 barplot(x2, space=0, axisnames = TRUE, ylab="Number of steps", xlab = "Following day")
 ```
 
-![plot of chunk new-hist](figure/new-hist-1.png)
+![](PA1_template_files/figure-html/new-hist-1.png)<!-- -->
 
 Which is, in compirison with the old one:
 
@@ -164,7 +159,7 @@ barplot(x1, space=0, axisnames = TRUE, ylab="Total number of steps", xlab = "Fol
 barplot(x2, space=0, axisnames = TRUE, ylab="Total number of steps", xlab = "Following day",main="Measures without NA")
 ```
 
-![plot of chunk plots](figure/plots-1.png)
+![](PA1_template_files/figure-html/plots-1.png)<!-- -->
 
 The new mean number of steps and the median are:
 
@@ -252,7 +247,5 @@ plot(aveday, type="l", xlab="Interval", ylab="Average Number of Steps", main="Da
 plot(aveweekend, type="l", xlab="Interval", ylab="Average Number of Steps", main="Daily steps Taken on Average, weekdays", col="green" , lwd=1)
 ```
 
-![plot of chunk plot-weekdays](figure/plot-weekdays-1.png)
-
-Be careful with the data interpretation: if the mean of steps is 0 there is a high probability that there are missing data there.
+![](PA1_template_files/figure-html/plot-weekdays-1.png)<!-- -->
 
